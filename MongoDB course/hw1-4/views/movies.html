@@ -1,0 +1,19 @@
+<!doctype HTML>
+<html>
+  <head><title>Add Movie</title></head>
+  <body>
+     <form action="/add-movie" method="POST">
+        <p>Current movies:</p>
+        {% for movie in movies %}
+          <p>
+            {{movie.title}}
+          </p>
+        {% endfor %}
+        <p>Add new movie?</p>
+        <input type="text" name="title" placeholder="title" />
+        <input type="text" name="year" placeholder="year" />
+        <input type="text" name="imdb" placeholder="imdb" />        
+        <input type="submit" value="Submit"/>
+     </form>
+  </body>
+</html>

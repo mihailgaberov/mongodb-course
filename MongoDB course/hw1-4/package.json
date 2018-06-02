@@ -1,0 +1,17 @@
+{
+    "name": "movies_collection",
+    "version": "0.1.0",
+    "description": "Movies collection",
+    "main": "app.js",
+    "dependencies": {
+        "assert": "^1.4.1",
+        "body-parser": "~1.14.2",
+        "consolidate": "~0.13.1",
+        "express": "~4.13.3",
+        "mongodb": "^3.1.0-beta4",
+        "nunjucks": "~2.2.0"
+    },
+    "author": "Mihail Gaberov",
+    "license": "0BSD",
+    "devDependencies": {}
+}
