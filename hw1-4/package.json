@@ -12,6 +12,5 @@
         "nunjucks": "~2.2.0"
     },
     "author": "Mihail Gaberov",
-    "license": "0BSD",
-    "devDependencies": {}
+    "license": "0BSD"
 }
