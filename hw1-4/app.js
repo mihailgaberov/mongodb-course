@@ -10,7 +10,6 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Handler for internal server errors
 function errorHandler(err, req, res, next) {
     console.error(err.message);
     console.error(err.stack);
@@ -37,7 +36,7 @@ MongoClient.connect('mongodb://localhost:27017/movies-collection', function (err
 
         if ((title == '') || (year == '') || (imdb == '')) {
             next('Please fill all fields.');
-        } else {
+        } else {miha
             db.collection('movies').insertOne(
                 { 'title': title, 'year': year, 'imdb': imdb },
                 function (err, r) {
