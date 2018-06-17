@@ -107,7 +107,6 @@ function queryMongoDB(query, queryNum) {
 
 
 function queryDocument(options) {
-console.log(options)
     var query = {};
 
     if ("overview" in options) {
@@ -120,7 +119,6 @@ console.log(options)
     }
 
     return query;
-    
 }
 
 function report(options) {
