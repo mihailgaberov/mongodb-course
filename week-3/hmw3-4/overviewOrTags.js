@@ -111,7 +111,8 @@ console.log(options)
     var query = {};
 
     if ("overview" in options) {
-        query["$or"] = [{"overview": {"$regex": options.overview, "$options": "i"}}, {"tag_list": {"$regex": options.overview, "$options": "i"}}];}
+        query["$or"] = [{"overview": {"$regex": options.overview, "$options": "i"}}, {"tag_list": {"$regex": options.overview, "$options": "i"}}];
+    }
 
     if ("milestones" in options) {
         query["milestones.source_description"] =
@@ -121,7 +122,6 @@ console.log(options)
     return query;
     
 }
-
 
 function report(options) {
     var totalEmployees = 0;
@@ -135,8 +135,3 @@ function report(options) {
     console.log("Total unique companies: " + companiesList.length);
     console.log("Average number of employees per company: " + Math.floor(totalEmployees / companiesList.length));
 }
-
-
-
-
-
