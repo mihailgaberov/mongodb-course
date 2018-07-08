@@ -39,7 +39,7 @@ db.companies.aggregate( [
 
 db.companies.aggregate( [
     { $match: { "relationships.person": { $ne: null } } },
-    { $project: { relationships: 1, _id: 1 } },
+    { $project: { relationships: 1, _id: 1, name: 1 } },
     { $unwind: "$relationships" },
     { $group: {
         _id: "$name",
@@ -49,7 +49,7 @@ db.companies.aggregate( [
     } },
     { $unwind: "$rels" },
     { $group: {
-        _id: "$rels.person",
+        _id: "$rels.permalink",
         count: { $sum: 1 }
     } },
     { $sort: { count: -1 } }
