@@ -57,7 +57,7 @@ function ItemDAO(database) {
                 categories.unshift(category);
                 callback(categories);
                 assert.equal(err, null);
-                return db.close();
+                // return db.close();
             }
         );
     }
@@ -65,41 +65,25 @@ function ItemDAO(database) {
 
     this.getItems = function(category, page, itemsPerPage, callback) {
         "use strict";
-
-        /*
-         * TODO-lab1B
-         *
-         * LAB #1B: Implement the getItems() method.
-         *
-         * Create a query on the "item" collection to select only the items
-         * that should be displayed for a particular page of a given category.
-         * The category is passed as a parameter to getItems().
-         *
-         * Use sort(), skip(), and limit() and the method parameters: page and
-         * itemsPerPage to identify the appropriate products to display on each
-         * page. Pass these items to the callback function.
-         *
-         * Sort items in ascending order based on the _id field. You must use
-         * this sort to answer the final project questions correctly.
-         *
-         * Note: Since "All" is not listed as the category for any items,
-         * you will need to query the "item" collection differently for "All"
-         * than you do for other categories.
-         *
-         */
-
-        var pageItem = this.createDummyItem();
+        var db = this.db;
         var pageItems = [];
-        for (var i=0; i<5; i++) {
-            pageItems.push(pageItem);
-        }
+        category = category === "All" ? { $exists: true } : category;
+        var cursor = db.collection('item').aggregate([
+            { $match: { category: category } },
+            { $limit: itemsPerPage },
+            { $skip: page },
+            { $sort: { _id: 1 } }
+        ] );
 
-        // TODO-lab1B Replace all code above (in this method).
-
-        // TODO Include the following line in the appropriate
-        // place within your code to pass the items for the selected page
-        // to the callback.
-        callback(pageItems);
+        cursor.forEach(
+            function(doc) {
+              pageItems.push(doc);
+            },
+            function(err) {
+                callback(pageItems);
+                assert.equal(err, null);
+            }
+        );
     }
 
 
