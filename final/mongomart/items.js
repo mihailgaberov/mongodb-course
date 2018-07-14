@@ -57,7 +57,6 @@ function ItemDAO(database) {
                 categories.unshift(category);
                 callback(categories);
                 assert.equal(err, null);
-                // return db.close();
             }
         );
     }
