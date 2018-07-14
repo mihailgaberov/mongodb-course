@@ -29,7 +29,7 @@ db.item.aggregate([
         category: 1
     } },
     { $group: {
-        _id: { _id: "$category" },
+        _id: "$category",
         num: {
             $sum: 1
         }

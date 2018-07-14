@@ -26,15 +26,16 @@ function ItemDAO(database) {
 
     this.getCategories = function(callback) {
         "use strict";
-
+        var db = this.db;
         var categories = [];
-        var cursor = this.db.collection('item').aggregate([
+        
+        var cursor = db.collection('item').aggregate([
             { $match: { category: { $exists: true } } },
             { $project: {
                 category: 1
             } },
             { $group: {
-                _id: { _id: "$category" },
+                _id: "$category",
                 num: {
                     $sum: 1
                 }
@@ -44,28 +45,21 @@ function ItemDAO(database) {
 
         cursor.forEach(
             function(doc) {
-              console.log(doc);
+              categories.push(doc);
             },
             function(err) {
+                var total = categories.reduce((accumulator, currentValue) => 
+                    accumulator + currentValue.num, 0);
+                var category = {
+                    _id: "All",
+                    num: total
+                };
+                categories.unshift(category);
+                callback(categories);
                 assert.equal(err, null);
-                //return this.db.close();
+                return db.close();
             }
         );
-
-
-        var category = {
-            _id: "All",
-            num: 9999
-        };
-
-        categories.push(category);
-
-        // TODO-lab1A Replace all code above (in this method).
-
-        // TODO Include the following line in the appropriate
-        // place within your code to pass the categories array to the
-        // callback.
-        callback(categories);
     }
 
 
