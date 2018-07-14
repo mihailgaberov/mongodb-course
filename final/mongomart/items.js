@@ -68,9 +68,9 @@ function ItemDAO(database) {
         var pageItems = [];
         category = category === "All" ? { $exists: true } : category;
         var cursor = db.collection('item').aggregate([
-            { $match: { category: category } },
+            { $match: { category } },
+            { $skip: page * itemsPerPage },
             { $limit: itemsPerPage },
-            { $skip: page },
             { $sort: { _id: 1 } }
         ] );
 
