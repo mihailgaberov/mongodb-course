@@ -88,27 +88,13 @@ function ItemDAO(database) {
 
     this.getNumItems = function(category, callback) {
         "use strict";
+        var db = this.db;
+        var searchToken = category === "All" ? {} : { category };
+        var numItems = db.collection('item').find(searchToken).count();
 
-        var numItems = 0;
-
-        /*
-         * TODO-lab1C:
-         *
-         * LAB #1C: Implement the getNumItems method()
-         *
-         * Write a query that determines the number of items in a category
-         * and pass the count to the callback function. The count is used in
-         * the mongomart application for pagination. The category is passed
-         * as a parameter to this method.
-         *
-         * See the route handler for the root path (i.e. "/") for an example
-         * of a call to the getNumItems() method.
-         *
-         */
-
-         // TODO Include the following line in the appropriate
-         // place within your code to pass the count to the callback.
-        callback(numItems);
+        numItems.then((numItems) => {
+            callback(numItems);
+        });
     }
 
 
