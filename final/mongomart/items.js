@@ -143,7 +143,7 @@ function ItemDAO(database) {
           function(err) {
               assert.equal(err, null);
           }
-      );
+        );
     }
 
     this.getRelatedItems = function(callback) {

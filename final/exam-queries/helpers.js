@@ -166,3 +166,14 @@ db.item.update({ _id: 1 },
     name: "Mickey", comment: "bla bla", stars: 5, date: "February 18th 2016, 3:13:45 pm" } } 
   }
 )
+
+ /*
+* TODO-lab5
+*
+* LAB #5: Implement the getCart() method.
+*
+* Query the "cart" collection by userId and pass the cart to the
+* callback function.
+*
+*/
+db.cart.find({userId: 1}).pretty();
