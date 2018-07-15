@@ -147,3 +147,22 @@ db.item.find({ $text: { $search: "leaf" } }).count()
 *
 */
 db.item.find({ _id: 1 }).pretty()
+
+
+/*
+  * TODO-lab4
+  *
+  * LAB #4: Implement addReview().
+  *
+  * Using the itemId parameter, update the appropriate document in the
+  * "item" collection with a new review. Reviews are stored as an
+  * array value for the key "reviews". Each review has the fields:
+  * "name", "comment", "stars", and "date".
+  *
+  */
+db.item.update({ _id: 1 },
+{ $addToSet: { 
+  reviews: { 
+    name: "Mickey", comment: "bla bla", stars: 5, date: "February 18th 2016, 3:13:45 pm" } } 
+  }
+)

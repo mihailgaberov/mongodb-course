@@ -61,7 +61,6 @@ function ItemDAO(database) {
         );
     }
 
-
     this.getItems = function(category, page, itemsPerPage, callback) {
         "use strict";
         var db = this.db;
@@ -86,7 +85,6 @@ function ItemDAO(database) {
         );
     }
 
-
     this.getNumItems = function(category, callback) {
         "use strict";
         var db = this.db;
@@ -97,7 +95,6 @@ function ItemDAO(database) {
             callback(numItems);
         });
     }
-
 
     this.searchItems = function(query, page, itemsPerPage, callback) {
         "use strict";
@@ -122,7 +119,6 @@ function ItemDAO(database) {
       );
     }
 
-
     this.getNumSearchItems = function(query, callback) {
         "use strict";
 
@@ -133,7 +129,6 @@ function ItemDAO(database) {
           callback(numItems);
         });
     }
-
 
     this.getItem = function(itemId, callback) {
         "use strict";
@@ -151,7 +146,6 @@ function ItemDAO(database) {
       );
     }
 
-
     this.getRelatedItems = function(callback) {
         "use strict";
 
@@ -167,18 +161,6 @@ function ItemDAO(database) {
     this.addReview = function(itemId, comment, name, stars, callback) {
         "use strict";
 
-        /*
-         * TODO-lab4
-         *
-         * LAB #4: Implement addReview().
-         *
-         * Using the itemId parameter, update the appropriate document in the
-         * "item" collection with a new review. Reviews are stored as an
-         * array value for the key "reviews". Each review has the fields:
-         * "name", "comment", "stars", and "date".
-         *
-         */
-
         var reviewDoc = {
             name: name,
             comment: comment,
@@ -186,14 +168,12 @@ function ItemDAO(database) {
             date: Date.now()
         }
 
-        // TODO replace the following two lines with your code that will
-        // update the document with a new review.
-        var doc = this.createDummyItem();
+        var doc = this.db.collection("item").update({ _id: itemId },
+          { $addToSet: { 
+              reviews: reviewDoc
+            } 
+          });
         doc.reviews = [reviewDoc];
-
-        // TODO Include the following line in the appropriate
-        // place within your code to pass the updated doc to the
-        // callback.
         callback(doc);
     }
 
