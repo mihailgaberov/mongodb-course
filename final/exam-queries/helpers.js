@@ -91,3 +91,48 @@ db.item.aggregate([
 */
 
 db.item.find({category: 'Books'}).count()
+
+/*
+* TODO-lab2A
+*
+* LAB #2A: Implement searchItems()
+*
+* Using the value of the query parameter passed to searchItems(),
+* perform a text search against the "item" collection.
+*
+* Sort the results in ascending order based on the _id field.
+*
+* Select only the items that should be displayed for a particular
+* page. For example, on the first page, only the first itemsPerPage
+* matching the query should be displayed.
+*
+* Use limit() and skip() and the method parameters: page and
+* itemsPerPage to select the appropriate matching products. Pass these
+* items to the callback function.
+*
+* searchItems() depends on a text index. Before implementing
+* this method, create a SINGLE text index on title, slogan, and
+* description. You should simply do this in the mongo shell.
+*
+*/
+db.item.aggregate([
+  { $match: { $text: { $search: "leaf" } } },
+  { $sort: { _id: 1 } },
+  { $limit: 5 },
+  { $skip: 0 }
+] ).pretty()
+
+
+/*
+* TODO-lab2B
+*
+* LAB #2B: Using the value of the query parameter passed to this
+* method, count the number of items in the "item" collection matching
+* a text search. Pass the count to the callback function.
+*
+* getNumSearchItems() depends on the same text index as searchItems().
+* Before implementing this method, ensure that you've already created
+* a SINGLE text index on title, slogan, and description. You should
+* simply do this in the mongo shell.
+*/
+db.item.find({ $text: { $search: "leaf" } }).count()
