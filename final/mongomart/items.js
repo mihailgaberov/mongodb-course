@@ -137,25 +137,18 @@ function ItemDAO(database) {
 
     this.getItem = function(itemId, callback) {
         "use strict";
+        var db = this.db;
 
-        /*
-         * TODO-lab3
-         *
-         * LAB #3: Implement the getItem() method.
-         *
-         * Using the itemId parameter, query the "item" collection by
-         * _id and pass the matching item to the callback function.
-         *
-         */
-
-        var item = this.createDummyItem();
-
-        // TODO-lab3 Replace all code above (in this method).
-
-        // TODO Include the following line in the appropriate
-        // place within your code to pass the matching item
-        // to the callback.
-        callback(item);
+        var cursor = db.collection('item').find({ _id: itemId });
+        
+        cursor.forEach(
+          function(doc) {
+            callback(doc);
+          },
+          function(err) {
+              assert.equal(err, null);
+          }
+      );
     }
 
 

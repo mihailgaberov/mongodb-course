@@ -136,3 +136,14 @@ db.item.aggregate([
 * simply do this in the mongo shell.
 */
 db.item.find({ $text: { $search: "leaf" } }).count()
+
+/*
+* TODO-lab3
+*
+* LAB #3: Implement the getItem() method.
+*
+* Using the itemId parameter, query the "item" collection by
+* _id and pass the matching item to the callback function.
+*
+*/
+db.item.find({ _id: 1 }).pretty()
