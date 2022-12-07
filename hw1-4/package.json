@@ -5,9 +5,9 @@
     "main": "app.js",
     "dependencies": {
         "assert": "^1.4.1",
-        "body-parser": "~1.14.2",
+        "body-parser": "~1.20.1",
         "consolidate": "~0.13.1",
-        "express": "~4.13.3",
+        "express": "~4.18.2",
         "mongodb": "^3.1.13",
         "nunjucks": "~2.4.3"
     },
