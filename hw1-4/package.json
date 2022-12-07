@@ -5,7 +5,7 @@
     "main": "app.js",
     "dependencies": {
         "assert": "^1.4.1",
-        "body-parser": "~1.14.2",
+        "body-parser": "~1.20.1",
         "consolidate": "~0.13.1",
         "express": "~4.17.3",
         "mongodb": "^3.1.13",
