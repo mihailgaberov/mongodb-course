@@ -6,7 +6,7 @@
     "dependencies": {
         "express": "~4.17.3",
         "body-parser": "~1.20.1",
-        "mongodb": "~3.1.13",
+        "mongodb": "~3.7.4",
         "nunjucks": "~3.2.4",
         "nunjucks-date": "~1.2.0"
     },
