@@ -4,7 +4,7 @@
     "description": "Using the MongoDB driver to read documents using find",
     "main": "app.js",
     "dependencies": {
-        "mongodb": "~3.1.13"
+        "mongodb": "~3.7.4"
     },
     "author": "Shannon Bradshaw",
     "license": "0BSD"
